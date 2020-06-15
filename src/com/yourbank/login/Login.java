@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.yourbank.data.Utilities;
 import com.yourbank.data.LoginCredentials;
 
-//@WebServlet(value = "/login")
+@WebServlet(value = "/login")
 public class Login extends HttpServlet {
 	LoginCredentials getDataFromDB(String userId)
 	{
@@ -35,13 +35,32 @@ public class Login extends HttpServlet {
 		else
 			return false;
 	}
-
+    boolean validateUserID(String userId,LoginCredentials logCred)
+    {
+    	if(userId.compareTo(logCred.userId)==0)
+    		return true;
+    	else
+    		return false;
+    }
 	void loginSuccess()
 	{
 		//Perform this operation for successful login
+		res.getWriter().println("SUCCESSFUL");
 	}
 	public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException
-	{ try{
+	{ 
+		String userId = req.getParameter("na");
+		String password = req.getParameter("psw");
+		if(validateUserID(userId,getDataFromDB(userId))){
+			if(checkPassword(password,getDataFromDB(userId)))
+				loginSuccess();
+			else
+				res.getWriter().println("Invalid Password");}
+		else
+			res.getWriter().println("Invalid UserId");
+			
+			
+		/*try{
 		String userId = req.getParameter("na");
 		String password = req.getParameter("psw");
 		//System.out.println("Reached here");
@@ -76,7 +95,7 @@ public class Login extends HttpServlet {
 	}catch(Exception e)
 	{
 		System.err.println(e);
-	}
+	}*/
 	//res.getWriter().println("Login works!");}
 		//search for userid in database
 		//if not found, display userid not found error msg
