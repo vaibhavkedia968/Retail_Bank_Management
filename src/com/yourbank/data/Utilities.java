@@ -1,4 +1,4 @@
-package com.yourbank.constants;
+package com.yourbank.data;
 
 public class Utilities 
 {

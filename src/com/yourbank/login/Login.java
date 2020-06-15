@@ -1,17 +1,45 @@
 package com.yourbank.login;
 
 import java.io.IOException;
+
 import java.sql.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.yourbank.constants.Utilities;
+import com.yourbank.data.Utilities;
+import com.yourbank.data.LoginCredentials;
 
 //@WebServlet(value = "/login")
 public class Login extends HttpServlet {
+	LoginCredentials getDataFromDB(String userId)
+	{
+		//Establish database connection
+		//Fetch the row corresponding to userId
+		//Create a LoginCredentials object
+		//If row found, then store the userId, password, timestamp into that LoginCredentials object
+		//If not found, then initialize it as null
+		//Return this object
+		
+		//Returning a sample LoginCredentials object for now
+		LoginCredentials logCred = new LoginCredentials("admin","admin12345","");
+		return logCred;
+		
+	}
+	
+	boolean checkPassword(String password, LoginCredentials logCred)
+	{
+		if(password.compareTo(logCred.password) == 0)
+			return true;
+		else
+			return false;
+	}
 
+	void loginSuccess()
+	{
+		//Perform this operation for successful login
+	}
 	public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException
 	{ try{
 		String userId = req.getParameter("na");
