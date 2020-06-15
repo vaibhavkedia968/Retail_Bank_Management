@@ -19,7 +19,7 @@ public class Login extends HttpServlet {
 		LoginCredentials logCred=null;
 		try{
 		Class.forName("com.mysql.jdbc.Driver");
-		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/bank","root","");
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/bank?useTimezone=true&serverTimezone=UTC","root","");
 		//Fetch the row corresponding to userId
 		String sql="select * from employee where UserId ='"+userId+"'";
 		Statement st=con.createStatement();
