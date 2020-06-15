@@ -42,7 +42,7 @@ public class Login extends HttpServlet {
     	else
     		return false;
     }
-	void loginSuccess()
+	void loginSuccess(HttpServletRequest req,HttpServletResponse res) throws IOException
 	{
 		//Perform this operation for successful login
 		res.getWriter().println("SUCCESSFUL");
@@ -53,7 +53,7 @@ public class Login extends HttpServlet {
 		String password = req.getParameter("psw");
 		if(validateUserID(userId,getDataFromDB(userId))){
 			if(checkPassword(password,getDataFromDB(userId)))
-				loginSuccess();
+				loginSuccess(req,res);
 			else
 				res.getWriter().println("Invalid Password");}
 		else
