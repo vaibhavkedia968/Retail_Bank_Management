@@ -16,14 +16,33 @@ public class Login extends HttpServlet {
 	LoginCredentials getDataFromDB(String userId)
 	{
 		//Establish database connection
+		LoginCredentials logCred=null;
+		try{
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/bank","root","");
 		//Fetch the row corresponding to userId
+		String sql="select * from employee where UserId ='"+userId+"'";
+		Statement st=con.createStatement();
+		ResultSet rs=st.executeQuery(sql);
+		
+		if(rs.next())
+		{
+			String userid=rs.getString(1);
+			String password=rs.getString(2);
+			logCred=new LoginCredentials(userid,password,"");
+		}
+		}
+		catch(Exception e)
+		{
+			System.err.println(e);
+		}
 		//Create a LoginCredentials object
 		//If row found, then store the userId, password, timestamp into that LoginCredentials object
 		//If not found, then initialize it as null
 		//Return this object
 		
 		//Returning a sample LoginCredentials object for now
-		LoginCredentials logCred = new LoginCredentials("admin","admin12345","");
+		//LoginCredentials logCred = new LoginCredentials("admin","admin12345","");
 		return logCred;
 		
 	}
@@ -37,22 +56,23 @@ public class Login extends HttpServlet {
 	}
     boolean validateUserID(String userId,LoginCredentials logCred)
     {
-    	if(userId.compareTo(logCred.userId)==0)
-    		return true;
-    	else
+    	if(logCred==null)
     		return false;
+    	else
+    		return true;
     }
 	void loginSuccess(HttpServletRequest req,HttpServletResponse res) throws IOException
 	{
 		//Perform this operation for successful login
-		res.getWriter().println("SUCCESSFUL");
+		//res.getWriter().println("SUCCESSFUL");
+		res.sendRedirect("home.jsp");
 	}
 	public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException
 	{ 
-		String userId = req.getParameter("na");
+		String user = req.getParameter("na");
 		String password = req.getParameter("psw");
-		if(validateUserID(userId,getDataFromDB(userId))){
-			if(checkPassword(password,getDataFromDB(userId)))
+		if(validateUserID(user,getDataFromDB(user))){
+			if(checkPassword(password,getDataFromDB(user)))
 				loginSuccess(req,res);
 			else
 				res.getWriter().println("Invalid Password");}
