@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.yourbank.data.Utilities;
 import com.yourbank.data.LoginCredentials;
@@ -65,6 +66,7 @@ public class Login extends HttpServlet {
 	{
 		//Perform this operation for successful login
 		//res.getWriter().println("SUCCESSFUL");
+		
 		res.sendRedirect("home.jsp");
 	}
 	public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException
@@ -72,8 +74,13 @@ public class Login extends HttpServlet {
 		String user = req.getParameter("na");
 		String password = req.getParameter("psw");
 		if(validateUserID(user,getDataFromDB(user))){
-			if(checkPassword(password,getDataFromDB(user)))
+			if(checkPassword(password,getDataFromDB(user))){
+				HttpSession session=req.getSession();  
+		        session.setAttribute("name",user);
+		        session.setMaxInactiveInterval(60);
 				loginSuccess(req,res);
+				
+			}
 			else
 				res.getWriter().println("Invalid Password");}
 		else

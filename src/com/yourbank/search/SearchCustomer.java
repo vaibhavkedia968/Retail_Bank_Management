@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(value = "/search/customer")
+@WebServlet(value = "search_customer")
 public class SearchCustomer extends HttpServlet
 {
 	public void doGet(HttpServletRequest req,HttpServletResponse res) throws IOException
