@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(value = "/search_customer")
 public class SearchCustomer extends HttpServlet
 {
-	public void doGet(HttpServletRequest req,HttpServletResponse res) throws IOException
+	public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException
 	{
 		res.getWriter().println("Search customer works!");
 	}
