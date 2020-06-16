@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.yourbank.data.Constants;
+import com.yourbank.data.EmployeeConstants;
 import com.yourbank.data.ErrorMessages;
 import com.yourbank.data.DBConfig;
 import com.yourbank.data.LoginCredentials;
@@ -32,7 +32,6 @@ public class Login extends HttpServlet {
 			{
 				String userid=rs.getString(1);
 				String password=rs.getString(2);
-				//String timestamp = rs.getString(3);
 				logCred=new LoginCredentials(userid,password,"");
 			}
 		}
@@ -67,12 +66,12 @@ public class Login extends HttpServlet {
 	}
 	public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException
 	{ 
-		String user = req.getParameter(Constants.USERID);
-		String password = req.getParameter(Constants.PASSWORD);
+		String user = req.getParameter(EmployeeConstants.USERID);
+		String password = req.getParameter(EmployeeConstants.PASSWORD);
 		if(validateUserID(user,getDataFromDB(user))){
 			if(checkPassword(password,getDataFromDB(user))){
 				HttpSession session=req.getSession();  
-		        session.setAttribute(Constants.LOGGEDIN_USER,user);
+		        session.setAttribute("LOGGEDIN_USER",user);
 		        session.setMaxInactiveInterval(60);
 				loginSuccess(req,res);
 				

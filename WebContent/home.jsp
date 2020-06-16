@@ -27,10 +27,10 @@
         <div class="select" style="display:inline-block" > 
             <select name="slctacc" id="slct2" onChange="location = this.value;"> 
                 <option>Manage Account</option> 
-                <option value="">Add</option> 
-                <option value="">Delete</option> 
-                <option value="">Search</option> 
-                <option value="">View Status</option> 
+                <option value="AddAcc.jsp">Add</option> 
+                <option value="DelAcc.jsp">Delete</option> 
+                <option value="SearchAcc.jsp">Search</option> 
+                <option value="StatusAcc.jsp">View Status</option> 
             </select> 
         </div> 
         <div class="select" style="display:inline-block"> 
