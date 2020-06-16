@@ -78,52 +78,10 @@ public class Login extends HttpServlet {
 				
 			}
 			else
+			//instead of printing it on a different page, we need to display it beside the password input field
 				res.getWriter().println(ErrorMessages.INCORRECT_PASSWORD);}
 		else
+			//instead of printing it on a different page, we need to display it beside the userid input field	
 			res.getWriter().println(ErrorMessages.USER_NOT_FOUND);
-			
-			
-		/*try{
-		String userId = req.getParameter("na");
-		String password = req.getParameter("psw");
-		//System.out.println("Reached here");
-		Class.forName("com.mysql.jdbc.Driver");
-		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/bank","root","");
-		String sql="select * from employee where UserId = ' "+userId+" '";
-		//String sql="insert into employee values("+userId+",' "+password+" ')";
-		Statement st=con.createStatement();
-		ResultSet rs=st.executeQuery(sql);
-		int flag=0;
-		
-		while(rs.next())
-		{
-			flag++;
-		}
-		if(flag==0)
-			res.getWriter().println("Invalid username");
-		else{
-			sql="select * from Employee where Password= ' "+password+" '";
-			st=con.createStatement();
-			rs=st.executeQuery(sql);
-			while(rs.next()){
-				flag++;
-			}
-			if(flag<2)
-				res.getWriter().println("Invalid Password");
-			else{
-				res.getWriter().println("Logged in");//res.sendRidirect("loginsuccess.jsp");
-			}
-		}
-		
-	}catch(Exception e)
-	{
-		System.err.println(e);
-	}*/
-	//res.getWriter().println("Login works!");}
-		//search for userid in database
-		//if not found, display userid not found error msg
-		//if found, compare password.
-		//if password is incorrect, display incorrect password msg
-		//if correct, log in the user succesfully and create a session for the user
 	}
 }
