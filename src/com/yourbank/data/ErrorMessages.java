@@ -4,5 +4,6 @@ public final class ErrorMessages
 {
 	public static String USER_NOT_FOUND = "Invalid user id.";
 	public static String INCORRECT_PASSWORD = "Invalid password.";
+	public static String CUSTOMER_NOT_FOUND = "Invalid customer details";
 
 }
