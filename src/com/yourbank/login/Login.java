@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.yourbank.data.Utilities;
+import com.yourbank.data.Constants;
+import com.yourbank.data.ErrorMessages;
+import com.yourbank.data.DBConfig;
 import com.yourbank.data.LoginCredentials;
 
 @WebServlet(value = "/login")
@@ -19,31 +21,25 @@ public class Login extends HttpServlet {
 		//Establish database connection
 		LoginCredentials logCred=null;
 		try{
-		Class.forName("com.mysql.jdbc.Driver");
-		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/bank?useTimezone=true&serverTimezone=UTC","root","");
-		//Fetch the row corresponding to userId
-		String sql="select * from employee where UserId ='"+userId+"'";
-		Statement st=con.createStatement();
-		ResultSet rs=st.executeQuery(sql);
-		
-		if(rs.next())
-		{
-			String userid=rs.getString(1);
-			String password=rs.getString(2);
-			logCred=new LoginCredentials(userid,password,"");
-		}
+			Class.forName(DBConfig.CLASS_NAME);
+			Connection con=DriverManager.getConnection(DBConfig.URL,DBConfig.USER,DBConfig.PASSWORD);
+			//Fetch the row corresponding to userId
+			String sql="select * from employee where UserId ='"+userId+"'";
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery(sql);
+			
+			if(rs.next())
+			{
+				String userid=rs.getString(1);
+				String password=rs.getString(2);
+				//String timestamp = rs.getString(3);
+				logCred=new LoginCredentials(userid,password,"");
+			}
 		}
 		catch(Exception e)
 		{
 			System.err.println(e);
 		}
-		//Create a LoginCredentials object
-		//If row found, then store the userId, password, timestamp into that LoginCredentials object
-		//If not found, then initialize it as null
-		//Return this object
-		
-		//Returning a sample LoginCredentials object for now
-		//LoginCredentials logCred = new LoginCredentials("admin","admin12345","");
 		return logCred;
 		
 	}
@@ -71,20 +67,20 @@ public class Login extends HttpServlet {
 	}
 	public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException
 	{ 
-		String user = req.getParameter("na");
-		String password = req.getParameter("psw");
+		String user = req.getParameter(Constants.USERID);
+		String password = req.getParameter(Constants.PASSWORD);
 		if(validateUserID(user,getDataFromDB(user))){
 			if(checkPassword(password,getDataFromDB(user))){
 				HttpSession session=req.getSession();  
-		        session.setAttribute("name",user);
+		        session.setAttribute(Constants.LOGGEDIN_USER,user);
 		        session.setMaxInactiveInterval(60);
 				loginSuccess(req,res);
 				
 			}
 			else
-				res.getWriter().println("Invalid Password");}
+				res.getWriter().println(ErrorMessages.INCORRECT_PASSWORD);}
 		else
-			res.getWriter().println("Invalid UserId");
+			res.getWriter().println(ErrorMessages.USER_NOT_FOUND);
 			
 			
 		/*try{
