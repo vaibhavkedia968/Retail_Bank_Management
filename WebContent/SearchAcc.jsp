@@ -9,6 +9,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class="btns" align="right">
+        <form action="home.jsp">
+        <input type="submit" value="Home">
+        </form>
+        </div>
 <center>
 <h1>Search Account Details</h1>
 <form action="search/account">

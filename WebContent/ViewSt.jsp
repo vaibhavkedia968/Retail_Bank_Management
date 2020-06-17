@@ -14,13 +14,17 @@
         </form>
         </div>
 <center>
-<h1>Create Account</h1>
-<form action="add/account" method = "post">
-		Customer id : <input type = "text" name="${AccountConstants.CUST_ID}"><br><br>
-		Account Type: <input type = "text" name="${AccountConstants.ACCOUNT_TYPE}"><br><br>
-		Deposit Amount: <input type = "text" name="${AccountConstants.AMOUNT}"><br><br>
+<h1>Account Statement</h1>
+<form action="deposit" method = "post">
+		Account id : <input type = "text" name="${AccountConstants.ACCOUNT_ID}"><br><br>
+		<input type="radio" value="Last number of transactions" name="lastNoOfTr">Last Number of Transactions<br><br>
+		<input type="radio" value="start end dates" name="StartEnd">Start-End Dates<br><br>
+		Number of transactions: <select name="noOfTr">
+		<option>2</option>
+		<option>4</option>
+		<option>8</option>
+		</select><br><br>
 		<input type = "submit" value="Submit">
-	</form>
-	</center>
+</center>
 </body>
 </html>
