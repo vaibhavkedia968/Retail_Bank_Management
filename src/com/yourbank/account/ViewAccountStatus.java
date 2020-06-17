@@ -9,38 +9,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 import com.yourbank.data.AccountConstants;
 import com.yourbank.data.AccountDetails;
 import com.yourbank.data.DBConfig;
 import com.yourbank.data.ErrorMessages;
+import com.yourbank.data.Utilities;
 
 @WebServlet(value="/status/account")
 public class ViewAccountStatus extends HttpServlet 
 {
-	AccountDetails getAccountDetails(Connection con, int accountId) throws SQLException
-	{
-		String sql="select * from account where accountId ='"+accountId+"'";
-		Statement st=con.createStatement();
-		ResultSet rs=st.executeQuery(sql);
-		AccountDetails acc;
-		if(rs.next())
-		{
-			acc = new AccountDetails(rs);
-		}
-		else
-		{
-			acc = null;
-		}
-		return acc;
-	}
 	
 	List<Integer> getAccountList(Connection con, int custId) throws SQLException 
 	{
@@ -77,7 +60,7 @@ public class ViewAccountStatus extends HttpServlet
 			try 
 			{
 				con = DBConfig.getDBConnection();
-				acc = getAccountDetails(con,Integer.parseInt(accountId));
+				acc = Utilities.getAccountDetails(con,Integer.parseInt(accountId));
 				if(acc==null)
 					res.sendError(HttpServletResponse.SC_NOT_FOUND, ErrorMessages.ACCOUNT_NOT_FOUND);
 				else
@@ -124,6 +107,4 @@ public class ViewAccountStatus extends HttpServlet
 		
 	}
 
-
-	
 }

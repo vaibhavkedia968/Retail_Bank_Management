@@ -16,25 +16,11 @@ import com.yourbank.data.AccountConstants;
 import com.yourbank.data.DBConfig;
 import com.yourbank.data.ErrorMessages;
 import com.yourbank.data.SuccessMessages;
+import com.yourbank.data.Utilities;
 
 @WebServlet(value = "/delete/account")
 public class DeleteAccount extends HttpServlet 
-{
-		
-	void checkSession()
-	{
-		
-	}
-	
-	boolean isValidAccountId(int accountId,Connection con) throws SQLException 
-	{
-		String sql="select * from account where accountId ='"+accountId+"'";
-		Statement st=con.createStatement();
-		ResultSet rs=st.executeQuery(sql);
-
-		return rs.next();
-		
-	}
+{		
 	int deleteAccount(Connection con,int accountId) throws SQLException
 	{
 		String sql = "DELETE FROM account WHERE accountId = '"+accountId+"'";
@@ -46,7 +32,7 @@ public class DeleteAccount extends HttpServlet
 	
 	public void doDelete(HttpServletRequest req,HttpServletResponse res) throws IOException
 	{
-		checkSession();
+		Utilities.checkSession();
 		
 		int accountId = Integer.parseInt(req.getParameter(AccountConstants.ACCOUNT_ID));
 		Connection con;
@@ -54,7 +40,7 @@ public class DeleteAccount extends HttpServlet
 		try 
 		{
 			con = DBConfig.getDBConnection();
-			if(!isValidAccountId(accountId,con))
+			if(!Utilities.isAccountIdValid(con,accountId))
 				res.sendError(HttpServletResponse.SC_NOT_FOUND,ErrorMessages.ACCOUNT_NOT_FOUND);
 			else
 			{

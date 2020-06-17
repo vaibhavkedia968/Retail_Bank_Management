@@ -7,7 +7,9 @@ public final class AccountConstants {
 	public static String ACCOUNT_ID = "account id";
 	public static String ACCOUNT_OBJECT = "account object";
 	public static String ACCOUNT_LIST = "accounts list";
+	public static String DEPOSIT = "deposit";
 	
-	public static String[] STATUS = {"Pending","Active"};
-	public static String[] MESSAGE = {"Customer already has account of specified type","Account creation complete"};
+	
+	public static String[] STATUS = {"-","Active","Pending"};
+	public static String[] MESSAGE = {"-","Account creation complete","Customer already has account of specified type"};
 }
