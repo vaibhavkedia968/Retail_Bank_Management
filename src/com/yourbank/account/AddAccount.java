@@ -22,13 +22,6 @@ import com.yourbank.data.SuccessMessages;
 @WebServlet(value = "/add/account")
 public class AddAccount extends HttpServlet {
 	
-	Connection getDBConnection() throws ClassNotFoundException, SQLException
-	{
-		Class.forName(DBConfig.CLASS_NAME);
-		Connection con=DriverManager.getConnection(DBConfig.URL,DBConfig.USER,DBConfig.PASSWORD);
-		return con;
-	}
-	
 	void checkSession()
 	{
 		
@@ -74,7 +67,7 @@ public class AddAccount extends HttpServlet {
 		
 		try 
 		{
-			con = getDBConnection();
+			con = DBConfig.getDBConnection();
 			if(amount<2000)
 				res.sendError(400,ErrorMessages.INSUFFICIENT_BALANCE);
 			else if(!isCustIdValid(custId, con))

@@ -1,6 +1,8 @@
 package com.yourbank.data;
 
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class AccountDetails {
@@ -22,6 +24,15 @@ public class AccountDetails {
 		this.balance = balance;
 		this.lastUpdated = Date.valueOf(LocalDate.now());
 	}
-	
+	 public AccountDetails(ResultSet rs) throws NumberFormatException, SQLException
+	 {
+		 this.accountId = rs.getInt("accountId");
+		 this.custId = rs.getInt("custId");
+		 this.accountType = rs.getString("accountType").charAt(0);
+		 this.status = rs.getInt("status");
+		 this.message = rs.getInt("message");
+		 this.balance = rs.getInt("balance");
+		 this.lastUpdated = rs.getDate("lastUpdated");
+	 }
 	
 }

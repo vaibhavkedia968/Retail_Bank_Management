@@ -20,13 +20,7 @@ import com.yourbank.data.SuccessMessages;
 @WebServlet(value = "/delete/account")
 public class DeleteAccount extends HttpServlet 
 {
-	Connection getDBConnection() throws ClassNotFoundException, SQLException
-	{
-		Class.forName(DBConfig.CLASS_NAME);
-		Connection con=DriverManager.getConnection(DBConfig.URL,DBConfig.USER,DBConfig.PASSWORD);
-		return con;
-	}
-	
+		
 	void checkSession()
 	{
 		
@@ -59,7 +53,7 @@ public class DeleteAccount extends HttpServlet
 		
 		try 
 		{
-			con = getDBConnection();
+			con = DBConfig.getDBConnection();
 			if(!isValidAccountId(accountId,con))
 				res.sendError(HttpServletResponse.SC_NOT_FOUND,ErrorMessages.ACCOUNT_NOT_FOUND);
 			else
