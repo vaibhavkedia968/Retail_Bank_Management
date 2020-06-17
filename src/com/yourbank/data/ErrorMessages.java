@@ -9,5 +9,7 @@ public final class ErrorMessages
 	public static String ACCOUTN_DELETION_FAILED = "Account deletion failed.";
 	public static String INSUFFICIENT_BALANCE = "Minimum balance should be 2000.";
 	public static String ACCOUNT_NOT_FOUND = "The given Account does not exists.";
+	public static String INVALID_CUST_ACCOUNT = "The account id is not valid for customer id.";
+	public static String DEPOSIT_FAILED = "Failed to deposit money.";
 
 }

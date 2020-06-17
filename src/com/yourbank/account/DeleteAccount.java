@@ -40,7 +40,7 @@ public class DeleteAccount extends HttpServlet
 		try 
 		{
 			con = DBConfig.getDBConnection();
-			if(!Utilities.isAccountIdValid(accountId,con))
+			if(!Utilities.isAccountIdValid(con,accountId))
 				res.sendError(HttpServletResponse.SC_NOT_FOUND,ErrorMessages.ACCOUNT_NOT_FOUND);
 			else
 			{

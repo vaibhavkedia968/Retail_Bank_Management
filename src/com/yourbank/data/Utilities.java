@@ -1,9 +1,12 @@
 package com.yourbank.data;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.List;
 
 public final class Utilities {
 
@@ -16,7 +19,7 @@ public final class Utilities {
 		return rs.next();
 	}
 	
-	public static boolean isAccountIdValid(int accountId,Connection con) throws SQLException 
+	public static boolean isAccountIdValid(Connection con, int accountId) throws SQLException 
 	{
 		String sql="select * from account where accountId ='"+accountId+"'";
 		Statement st=con.createStatement();
@@ -25,6 +28,36 @@ public final class Utilities {
 		return rs.next();
 		
 	}
+	
+	public static AccountDetails getAccountDetails(Connection con, int accountId) throws SQLException
+	{
+		String sql="select * from account where accountId ='"+accountId+"'";
+		Statement st=con.createStatement();
+		ResultSet rs=st.executeQuery(sql);
+		AccountDetails acc;
+		if(rs.next())
+		{
+			acc = new AccountDetails(rs);
+		}
+		else
+		{
+			acc = null;
+		}
+		return acc;
+	}
+	
+	public static int updateAccountDetails(Connection con, AccountDetails acc) throws SQLException
+	{
+		String sql = "UPDATE account "
+				+ "SET status="+acc.status+", message="+acc.message+", balance="+acc.balance//+", lastUpdated="+Date.valueOf(LocalDate.now())
+				+" WHERE accountId="+acc.accountId;
+		Statement st=con.createStatement();
+		int affectedRows=st.executeUpdate(sql);
+		
+		return affectedRows;
+		
+	}
+	
 	
 	public static void checkSession() 
 	{
