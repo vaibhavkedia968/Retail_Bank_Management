@@ -29,6 +29,10 @@ public class AddAccount extends HttpServlet {
 		return con;
 	}
 	
+	void checkSession()
+	{
+		
+	}
 	boolean isCustIdValid(int custId, Connection con) throws SQLException
 	{
 		String sql="select * from customer where id ='"+custId+"'";
@@ -37,8 +41,6 @@ public class AddAccount extends HttpServlet {
 
 		return rs.next();
 	}
-	
-	
 	
 	int getAccountId()
 	{
@@ -61,6 +63,7 @@ public class AddAccount extends HttpServlet {
 	
 	public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException
 	{
+		checkSession();
 		int custId,amount,accountId;
 		char accountType; //S for savings, C for current according to srs
 		Connection con;
@@ -83,11 +86,11 @@ public class AddAccount extends HttpServlet {
 				int affectedRows = addAccount(con,ac);
 				if(affectedRows==0)
 				{
-					res.sendError(500,ErrorMessages.ACCOUNT_CREATION_FAILED);
+					res.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,ErrorMessages.ACCOUNT_CREATION_FAILED);
 				}
 				else
 				{
-					res.sendError(201, SuccessMessages.ACCOUNT_CREATED);
+					res.setStatus(HttpServletResponse.SC_CREATED, SuccessMessages.ACCOUNT_CREATED);
 				}
 				
 				
@@ -97,11 +100,6 @@ public class AddAccount extends HttpServlet {
 		{
 			e.printStackTrace();
 		}
-		
-		
-		
-		
-		
 	}
 
 }
