@@ -11,6 +11,6 @@ public final class CustomerConstants {
 	public static String CITY = "city";
 	public static String STATE = "state";
 	public static String[] STATUS = {"-","Active","Pending"};
-	public static String[] MESSAGE = {"-","Customer Created Successfully","Customer Updated Successfully"};
+	public static String[] MESSAGE = {"-","Customer Created Successfully","Customer Updated Successfully","Customer Deleted Successfully","Customer does not exist"};
 	
 }

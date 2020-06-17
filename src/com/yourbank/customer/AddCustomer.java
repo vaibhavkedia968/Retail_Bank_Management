@@ -48,7 +48,7 @@ public class AddCustomer extends HttpServlet
 		PreparedStatement st = con.prepareStatement(sql);
 		st.setDate(1, java.sql.Date.valueOf(java.time.LocalDate.now()));
 		 x=st.execute();
-		 }
+		}
 		catch(Exception e)
 		{
 			System.err.println(e);
@@ -57,5 +57,6 @@ public class AddCustomer extends HttpServlet
 			createSuccess(req,res);
 			res.getWriter().println("Customer created successfully");
 		}
+	 
 		}
 }
