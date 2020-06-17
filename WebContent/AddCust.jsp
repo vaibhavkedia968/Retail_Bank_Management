@@ -15,6 +15,11 @@ alert(msg);
 </script>
 </head>
 <body>
+<div class="btns" align="right">
+        <form action="home.jsp">
+        <input type="submit" value="Home">
+        </form>
+        </div>
 <center>
 <h1>Create Customer</h1>
 <form action="add_customer" method = "post">
