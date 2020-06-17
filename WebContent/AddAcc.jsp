@@ -10,7 +10,7 @@
 <body>
 <center>
 <h1>Create Account</h1>
-<form action="add_account" method = "post">
+<form action="add/account" method = "post">
 		Customer id : <input type = "text" name="${AccountConstants.CUST_ID}"><br><br>
 		Account Type: <input type = "text" name="${AccountConstants.ACCOUNT_TYPE}"><br><br>
 		Deposit Amount: <input type = "text" name="${AccountConstants.AMOUNT}"><br><br>
