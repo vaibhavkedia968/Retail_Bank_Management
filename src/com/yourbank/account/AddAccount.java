@@ -18,23 +18,11 @@ import com.yourbank.data.AccountDetails;
 import com.yourbank.data.DBConfig;
 import com.yourbank.data.ErrorMessages;
 import com.yourbank.data.SuccessMessages;
+import com.yourbank.data.Utilities;
 
 @WebServlet(value = "/add/account")
 public class AddAccount extends HttpServlet {
-	
-	void checkSession()
-	{
 		
-	}
-	boolean isCustIdValid(int custId, Connection con) throws SQLException
-	{
-		String sql="select * from customer where id ='"+custId+"'";
-		Statement st=con.createStatement();
-		ResultSet rs=st.executeQuery(sql);
-
-		return rs.next();
-	}
-	
 	int getAccountId()
 	{
 		int id = 700000000 + (new Random()).nextInt(90000000) + 10000000;
@@ -56,7 +44,7 @@ public class AddAccount extends HttpServlet {
 	
 	public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException
 	{
-		checkSession();
+		Utilities.checkSession();
 		int custId,amount,accountId;
 		char accountType; //S for savings, C for current according to srs
 		Connection con;
@@ -70,7 +58,7 @@ public class AddAccount extends HttpServlet {
 			con = DBConfig.getDBConnection();
 			if(amount<2000)
 				res.sendError(400,ErrorMessages.INSUFFICIENT_BALANCE);
-			else if(!isCustIdValid(custId, con))
+			else if(!Utilities.isCustIdValid(con,custId))
 				res.sendError(404,ErrorMessages.CUSTOMER_NOT_FOUND);
 			else
 			{

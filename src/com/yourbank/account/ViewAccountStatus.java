@@ -9,14 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 import com.yourbank.data.AccountConstants;
 import com.yourbank.data.AccountDetails;
 import com.yourbank.data.DBConfig;
@@ -124,6 +122,4 @@ public class ViewAccountStatus extends HttpServlet
 		
 	}
 
-
-	
 }
