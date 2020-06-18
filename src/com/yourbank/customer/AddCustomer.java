@@ -17,7 +17,7 @@ import com.yourbank.data.CustomerConstants;
 @WebServlet(value = "/add_customer")
 public class AddCustomer extends HttpServlet 
 {
-	public void createSuccess(HttpServletRequest req,HttpServletResponse res)
+	/*public void createSuccess(HttpServletRequest req,HttpServletResponse res)
 	{
 		req.setAttribute("Message","Customer Created successfully");
 		RequestDispatcher rd=req.getRequestDispatcher("AddCust.jsp");
@@ -27,7 +27,7 @@ public class AddCustomer extends HttpServlet
 		{
 			System.err.println(e);
 		}
-	}
+	}*/
 	public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException
 	{
 		int ssn_id = Integer.parseInt(req.getParameter(CustomerConstants.SSN_ID));
@@ -48,11 +48,8 @@ public class AddCustomer extends HttpServlet
 		PreparedStatement st = con.prepareStatement(sql);
 		st.setDate(1, java.sql.Date.valueOf(java.time.LocalDate.now()));
 		 x=st.execute();
-		 if(!x){
-				//createSuccess(req,res);
-			    //res.getWriter().println("Kuch toh print kar de bhai");
+		 if(!x)
 				res.getWriter().println("Customer created successfully");
-			}
 		}
 		catch(Exception e)
 		{
