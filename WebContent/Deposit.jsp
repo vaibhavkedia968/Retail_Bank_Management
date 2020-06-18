@@ -14,11 +14,13 @@
         </form>
         </div>
 <center>
-<h1>Create Account</h1>
-<form action="add/account" method = "post">
+<h1>Deposit Money</h1>
+<form action="deposit" method = "post">
+		Account id : <input type = "text" name="${AccountConstants.ACCOUNT_ID}"><br><br>
 		Customer id : <input type = "text" name="${AccountConstants.CUST_ID}"><br><br>
-		Account Type: <input type = "text" name="${AccountConstants.ACCOUNT_TYPE}"><br><br>
-		Deposit Amount: <input type = "text" name="${AccountConstants.AMOUNT}"><br><br>
+		Account Type : <input type = "text" name="${AccountConstants.ACCOUNT_TYPE}"><br><br>
+		Balance: <input type = "text" name="${AccountConstants.DEPOSIT}"><br><br>
+		Deposit Amount : <input type = "text" name="${AccountConstants.AMOUNT}"><br><br>
 		<input type = "submit" value="Submit">
 	</form>
 	</center>

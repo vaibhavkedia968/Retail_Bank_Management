@@ -35,7 +35,11 @@ public class DeleteCustomer extends HttpServlet
 	}
 	public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException
 	{
-		int custid = Integer.parseInt(req.getParameter(CustomerConstants.CUST_ID));
+		String v=req.getParameter("slct");
+		if(v.equals("Cancel"))
+		res.sendRedirect("home.jsp");
+		else{
+			int custid = Integer.parseInt(req.getParameter(CustomerConstants.CUST_ID));
 		Connection con;
 		try 
 		{
@@ -54,7 +58,7 @@ public class DeleteCustomer extends HttpServlet
 		{
 			System.err.println(e);
 		}
-		
+		}	
 	}
 
 }

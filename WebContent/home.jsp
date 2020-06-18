@@ -52,10 +52,10 @@ Welcome ${LOGGEDIN_USER}<br>
         <div class="select" style="display:inline-block"> 
             <select name="slctopr" id="slct3" onChange="location = this.value;"> 
                 <option>Account Operations</option> 
-                <option value="">Deposit</option> 
-                <option value="">Withdraw</option> 
-                <option value="">Transfer</option> 
-                <option value="">View Statements</option> 
+                <option value="Deposit.jsp">Deposit</option> 
+                <option value="Withdraw.jsp">Withdraw</option> 
+                <option value="Transfer.jsp">Transfer</option> 
+                <option value="ViewSt.jsp">View Statements</option> 
             </select> 
         </div> 
         

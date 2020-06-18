@@ -8,6 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class="btns" align="right">
+        <form action="home.jsp">
+        <input type="submit" value="Home">
+        </form>
+        </div>
 <center>
 <h1>Delete Customer</h1>
 <form action="delete_customer" method = "post">
@@ -16,7 +21,7 @@
 		name : <input type = "text" name="${CustomerConstants.NAME}"><br><br>
 		age : <input type = "text" name="${CustomerConstants.AGE}"><br><br>
 		address : <input type = "text" name="${CustomerConstants.ADDRESS}"><br><br>
-		<input type = "submit" value="Delete Customer" style="margin-right:10px"> <input type="submit" value="Cancel">
+		<input type = "submit" name="slct" value="Delete Customer" style="margin-right:10px"> <input type="submit" name="slct" value="Cancel" >
 	</form>
 	</center>
 </body>
