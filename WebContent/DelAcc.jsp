@@ -15,10 +15,8 @@
         </div>
 <center>
 <h1>Delete Account</h1>
-<form action="delete_account" method = "post">
-Account Id : <select name="${AccountConstants.CUST_ID}">
-<option value="">Select ID</option>
-</select><br><br>
+<form action="delete/account" method = "post">
+Account Id : <input type = "text" name="${AccountConstants.ACCOUNT_ID}"><br><br> 
 Account type :<input type = "text" name="${AccountConstants.ACCOUNT_TYPE}"><br><br> 
 <input type = "submit" value="Delete">
 	</form>

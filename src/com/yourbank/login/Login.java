@@ -72,7 +72,7 @@ public class Login extends HttpServlet {
 			if(checkPassword(password,getDataFromDB(user))){
 				HttpSession session=req.getSession();  
 		        session.setAttribute("LOGGEDIN_USER",user);
-		        session.setMaxInactiveInterval(60);
+		        session.setMaxInactiveInterval(300);
 				loginSuccess(req,res);
 				
 			}

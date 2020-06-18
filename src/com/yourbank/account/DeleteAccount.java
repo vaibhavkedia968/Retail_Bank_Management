@@ -30,7 +30,7 @@ public class DeleteAccount extends HttpServlet
 	}
 	
 	
-	public void doDelete(HttpServletRequest req,HttpServletResponse res) throws IOException
+	public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException
 	{
 		Utilities.checkSession();
 		

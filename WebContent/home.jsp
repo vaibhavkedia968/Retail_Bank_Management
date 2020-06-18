@@ -36,7 +36,7 @@ Welcome ${LOGGEDIN_USER}<br>
                 <option value="AddCust.jsp">Add</option> 
                 <option value="UpdCust.jsp">Update</option> 
                 <option value="DelCust.jsp">Delete</option> 
-                <option value="SearchCust.jsp">Search</option> 
+                <option value="SearchCust.html">Search</option> 
                 <option value="StatusCust.jsp">View Status</option> 
             </select> 
         </div> 
@@ -45,7 +45,7 @@ Welcome ${LOGGEDIN_USER}<br>
                 <option>Manage Account</option> 
                 <option value="AddAcc.jsp">Add</option> 
                 <option value="DelAcc.jsp">Delete</option> 
-                <option value="SearchAcc.jsp">Search</option> 
+                <option value="SearchAcc.html">Search</option> 
                 <option value="StatusAcc.jsp">View Status</option> 
             </select> 
         </div> 

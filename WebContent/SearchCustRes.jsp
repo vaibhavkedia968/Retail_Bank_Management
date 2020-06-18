@@ -10,6 +10,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class="btns" align="right">
+        <form action="home.jsp">
+        <input type="submit" value="Home">
+        </form>
+        </div>
+<center>
+<h1>Customer Details</h1>
 <%!
 public String execute (int id,int typeofid)throws SQLException,ClassNotFoundException//0 for ssn ,1 for cust
 {
@@ -60,5 +67,6 @@ public String execute (int id,int typeofid)throws SQLException,ClassNotFoundExce
 		out.println(e);
 	}
 %>
+</center>
 </body>
 </html>
