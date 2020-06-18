@@ -15,6 +15,11 @@ public final class AccountConstants {
 	public static String TRANSFER_FROM = "Transered from ";
 	public static String SOURCE_OBJECT = "Source account details";
 	public static String TARGET_OBJECT = "Target account details";
+	public static String STATEMENT_MODE = "Statement mode";
+	public static String N_TRANSACTIONS = "Last n transactions";
+	public static String START_DATE = "Start date";
+	public static String END_DATE = "End date";
+	public static String TRANSACTION_STATEMENT = "Transaction statement list";
 	
 	
 	public static String[] STATUS = {"-","Active","Pending"};

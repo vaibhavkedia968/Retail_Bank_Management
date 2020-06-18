@@ -1,5 +1,7 @@
 package com.yourbank.data;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 
 public class TransactionDetails {
@@ -21,4 +23,13 @@ public class TransactionDetails {
 		this.description = description;
 	}
 
+	public TransactionDetails(ResultSet rs) throws SQLException 
+	{
+		this.transactionId = rs.getLong("transactionId");
+		this.accountId = rs.getInt("accountId");
+		this.debit = rs.getInt("debit");
+		this.credit = rs.getInt("credit");
+		this.timestamp = rs.getTimestamp("timestamp");
+		this.description = rs.getString("description");
+	}
 }
