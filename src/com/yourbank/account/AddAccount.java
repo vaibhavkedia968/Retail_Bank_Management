@@ -40,7 +40,7 @@ public class AddAccount extends HttpServlet {
 		return affectedRows;
 	
 	}
-	
+	//todo
 	
 	public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException
 	{

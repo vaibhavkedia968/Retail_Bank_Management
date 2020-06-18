@@ -8,23 +8,46 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="btns" align="right">
-        <form action="home.jsp">
-        <input type="submit" value="Home">
-        </form>
-        </div>
-<center>
-<h1>Account Statement</h1>
-<form action="deposit" method = "post">
-		Account id : <input type = "text" name="${AccountConstants.ACCOUNT_ID}"><br><br>
-		<input type="radio" value="Last number of transactions" name="lastNoOfTr">Last Number of Transactions<br><br>
-		<input type="radio" value="start end dates" name="StartEnd">Start-End Dates<br><br>
-		Number of transactions: <select name="noOfTr">
-		<option>2</option>
-		<option>4</option>
-		<option>8</option>
-		</select><br><br>
-		<input type = "submit" value="Submit">
-</center>
+	<div class="btns" align="right">
+	        <form action="home.jsp">
+	        <input type="submit" value="Home">
+	        </form>
+	        </div>
+	<center>
+	<h1>Account Statement</h1>
+	<form action="account/statement" method = "get">
+		<p>Account id : <input type = "text" name="${AccountConstants.ACCOUNT_ID}"></p>
+		<p><input type="radio" name="${AccountConstants.STATEMENT_MODE}" value="1" onclick="inputN()"> Last N number of transactions</p>
+		<p><input type="radio" name="${AccountConstants.STATEMENT_MODE}" value="2" onclick="inputDates()"> Start End dates</p>
+		<p>Number of transactions: <input type="text" id="N" disabled="disabled" name="${AccountConstants.N_TRANSACTIONS}"><p>
+		<p>Start date: <input type="text" id="startdate" disabled="disabled" name="${AccountConstants.START_DATE}"><p>
+		<p>End date: <input type="text" id="enddate" disabled="disabled" name="${AccountConstants.END_DATE}"><p>
+		
+		<input type="submit" value="Submit">
+	</form>
+	
+	</center>
+	<script>
+		function inputN(){
+			var ele = document.getElementById("N");
+			ele.disabled=false;
+			var ele = document.getElementById("startdate");
+			ele.disabled=true;
+			var ele = document.getElementById("enddate");
+			ele.disabled=true;
+			
+		}
+		
+		function inputDates(){
+			var ele = document.getElementById("N");
+			ele.disabled=true;
+			var ele = document.getElementById("startdate");
+			ele.disabled=false;
+			var ele = document.getElementById("enddate");
+			ele.disabled=false;
+			
+		}
+	
+	</script>
 </body>
 </html>
