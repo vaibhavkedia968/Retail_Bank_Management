@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +23,7 @@ import com.yourbank.data.TransactionDetails;
 import com.yourbank.data.Utilities;
 
 
-@WebServlet(value="/account/statement")
+@WebServlet(value="/accountstatement")
 public class ViewStatement extends HttpServlet {
 	
 	List<TransactionDetails> executeQuery(Connection con,String sql) throws SQLException
@@ -59,7 +61,7 @@ public class ViewStatement extends HttpServlet {
 		return TransactionList;
 	}
 	
-	public void doGet(HttpServletRequest req,HttpServletResponse res) throws IOException
+	public void doGet(HttpServletRequest req,HttpServletResponse res) throws IOException, ServletException
 	{
 		int accountId = Integer.parseInt(req.getParameter(AccountConstants.ACCOUNT_ID));
 		int mode = Integer.parseInt(req.getParameter(AccountConstants.STATEMENT_MODE));
@@ -87,7 +89,9 @@ public class ViewStatement extends HttpServlet {
 				TransactionList = getTransactionsDateWise(con,start,end,accountId);	
 			}
 			req.setAttribute(AccountConstants.TRANSACTION_STATEMENT, TransactionList);
-			
+			RequestDispatcher requestDispatcher = req.getRequestDispatcher("DisplaySt.jsp");
+            requestDispatcher.forward(req, res);
+			//res.sendRedirect("DisplaySt.jsp");
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

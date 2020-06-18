@@ -14,14 +14,18 @@
 List<TransactionDetails> l=(List<TransactionDetails>)request.getAttribute(AccountConstants.TRANSACTION_STATEMENT);
 out.println("<table border='|'> ");
 out.println("<tr>");
-out.println("<td>Details</td>");
+out.println("<td>Transaction id</td>");
+out.println("<td>Amount</td>");
+out.println("<td>Description</td>");
 out.println("</tr>");
 int s=l.size();
 int i=0;
 while(i<s)
 {
 	out.println("<tr>");
-	out.println("<td>"+l.get(i)+"</td>");
+	out.println("<td>"+l.get(i).transactionId+"</td>");
+	out.println("<td>"+ (l.get(i).debit+l.get(i).credit)+"</td>");
+	out.println("<td>"+l.get(i).description+"</td>");
 	out.println("</tr>");
 	i++;
 }

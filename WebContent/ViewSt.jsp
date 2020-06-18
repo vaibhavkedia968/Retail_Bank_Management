@@ -15,7 +15,7 @@
 	        </div>
 	<center>
 	<h1>Account Statement</h1>
-	<form action="account/statement" method = "get">
+	<form action="accountstatement" method = "get">
 		<p>Account id : <input type = "text" name="${AccountConstants.ACCOUNT_ID}"></p>
 		<p><input type="radio" name="${AccountConstants.STATEMENT_MODE}" value="1" onclick="inputN()"> Last N number of transactions</p>
 		<p><input type="radio" name="${AccountConstants.STATEMENT_MODE}" value="2" onclick="inputDates()"> Start End dates</p>
