@@ -20,8 +20,8 @@
 		<p><input type="radio" name="${AccountConstants.STATEMENT_MODE}" value="1" onclick="inputN()"> Last N number of transactions</p>
 		<p><input type="radio" name="${AccountConstants.STATEMENT_MODE}" value="2" onclick="inputDates()"> Start End dates</p>
 		<p>Number of transactions: <input type="text" id="N" disabled="disabled" name="${AccountConstants.N_TRANSACTIONS}"><p>
-		<p>Start date: <input type="text" id="startdate" disabled="disabled" name="${AccountConstants.START_DATE}"><p>
-		<p>End date: <input type="text" id="enddate" disabled="disabled" name="${AccountConstants.END_DATE}"><p>
+		<p>Start date (YYYY-MM-DD): <input type="text" id="startdate" disabled="disabled" name="${AccountConstants.START_DATE}"><p>
+		<p>End date (YYYY-MM-DD): <input type="text" id="enddate" disabled="disabled" name="${AccountConstants.END_DATE}"><p>
 		
 		<input type="submit" value="Submit">
 	</form>
