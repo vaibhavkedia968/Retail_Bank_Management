@@ -40,7 +40,13 @@ public class AddAccount extends HttpServlet {
 		return affectedRows;
 	
 	}
-	//todo
+	boolean CustAlreadyHasThisAccount(Connection con,int custId,char accountType) throws SQLException
+	{
+		String sql = "SELECT * FROM account WHERE custId = "+custId+" AND accountType='"+accountType+"'";
+		Statement st=con.createStatement();
+		ResultSet rs=st.executeQuery(sql);
+		return rs.next();		
+	}
 	
 	public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException
 	{
@@ -60,6 +66,8 @@ public class AddAccount extends HttpServlet {
 				res.sendError(400,ErrorMessages.INSUFFICIENT_BALANCE);
 			else if(!Utilities.isCustIdValid(con,custId))
 				res.sendError(404,ErrorMessages.CUSTOMER_NOT_FOUND);
+			else if(CustAlreadyHasThisAccount(con,custId,accountType))
+				res.sendError(400,ErrorMessages.ACCOUNT_ALREADY_EXISTS);
 			else
 			{
 				accountId = getAccountId();
