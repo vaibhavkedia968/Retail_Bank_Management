@@ -40,7 +40,7 @@ public class AddCustomer extends HttpServlet
 		String address = req.getParameter(CustomerConstants.ADDRESS);
 		String state = req.getParameter(CustomerConstants.STATE);
 		String city = req.getParameter(CustomerConstants.CITY);
-		boolean x=false;
+		boolean x;
 		Connection con; 
 		try{
 			con = DBConfig.getDBConnection();
@@ -48,15 +48,17 @@ public class AddCustomer extends HttpServlet
 		PreparedStatement st = con.prepareStatement(sql);
 		st.setDate(1, java.sql.Date.valueOf(java.time.LocalDate.now()));
 		 x=st.execute();
+		 if(!x){
+				//createSuccess(req,res);
+			    //res.getWriter().println("Kuch toh print kar de bhai");
+				res.getWriter().println("Customer created successfully");
+			}
 		}
 		catch(Exception e)
 		{
 			System.err.println(e);
 		}
-		if(x){
-			createSuccess(req,res);
-			res.getWriter().println("Customer created successfully");
-		}
+		
 	 
 		}
 }
