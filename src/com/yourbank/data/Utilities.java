@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Random;
 
 public final class Utilities {
 
@@ -57,7 +58,23 @@ public final class Utilities {
 		return affectedRows;
 		
 	}
+	public static int addTransaction(Connection con, TransactionDetails trans) throws SQLException
+	{
+		String sql = "INSERT INTO transactions "
+				+ "VALUES ('"+trans.transactionId+"', '"+trans.accountId+"', '"+trans.debit+"', '"+trans.credit+"', '"+trans.timestamp+"','"+trans.description+"');";
+
+		Statement st=con.createStatement();
+		int affectedRows=st.executeUpdate(sql);
+		return affectedRows;
 	
+	}
+	
+	public static long getTransactionId()
+	{
+		long x =(long)Math.pow(10, 15);
+		long id = Math.abs((new Random()).nextLong()*9*x + x);
+		return id;
+	}
 	
 	public static void checkSession() 
 	{

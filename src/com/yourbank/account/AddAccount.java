@@ -56,7 +56,7 @@ public class AddAccount extends HttpServlet {
 		try 
 		{
 			con = DBConfig.getDBConnection();
-			if(amount<2000)
+			if(amount<0)
 				res.sendError(400,ErrorMessages.INSUFFICIENT_BALANCE);
 			else if(!Utilities.isCustIdValid(con,custId))
 				res.sendError(404,ErrorMessages.CUSTOMER_NOT_FOUND);
